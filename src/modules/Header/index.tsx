@@ -38,7 +38,7 @@ const Header: React.FC = () => {
     const [valueInput, setValueInput] = useState('');
     const [products, setProducts] = useState([]);
     const [showResult, setShowResult] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [, setLoading] = useState(false);
 
     useDebounce(
         () => {
@@ -85,10 +85,16 @@ const Header: React.FC = () => {
                         </HeaderTopRightList>
 
                         <HeaderTopRightList>
-                            <Link to={config.routes.login}>
-                                <span>Login</span>
-                                <img src={user} alt="" />
-                            </Link>
+                            <div className="hover-header">
+                                <Link
+                                    to={config.routes.login}
+                                    className="login-header"
+                                >
+                                    <span>Login</span>
+                                    <img src={user} alt="" />
+                                </Link>
+                                {/* <span className="modal-header">Log out</span> */}
+                            </div>
                         </HeaderTopRightList>
 
                         <HeaderTopRightList>

@@ -52,6 +52,8 @@ export const StyledHeaderTopRight = styled.div`
 
 export const HeaderTopRightList = styled.div`
     padding-left: 17px;
+    position: relative;
+
     cursor: pointer;
     img {
         margin-bottom: -2px;
@@ -59,7 +61,24 @@ export const HeaderTopRightList = styled.div`
     span {
         color: #fff;
     }
+
+    .modal-header {
+        position: absolute;
+        background-color: white;
+        width: 80px;
+        height: auto;
+        border: 1px solid;
+        border-color: #ccc;
+        color: #333;
+        padding: 10px;
+        z-index: 2;
+        display: none;
+    }
+    .hover-header:hover .modal-header {
+        display: block;
+    }
 `;
+
 // Header bottom
 export const StyledHeaderBottom = styled.div`
     height: 78px;

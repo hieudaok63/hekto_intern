@@ -65,8 +65,7 @@ const Login = () => {
                     };
 
                     const res = await authApi.login(body);
-                    console.log(res);
-                    toast.success('ss');
+                    toast.success('Logged in successfully');
                 } else {
                     const body = {
                         name: values.name,
@@ -75,15 +74,13 @@ const Login = () => {
                     };
 
                     const res = await authApi.register(body);
-                    console.log(res);
-                    toast.success('');
+                    console.log(res.data.name);
+                    toast.success('Register successfully');
                 }
 
                 navigate(config.routes.home);
-            } catch (err) {
-                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                toast.error('a');
-                console.log(err);
+            } catch (err: any) {
+                toast.error(err.response.data.message);
             }
         },
 
