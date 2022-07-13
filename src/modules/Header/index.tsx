@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDebounce } from 'src/hooks';
 import { axiosClient, productApi } from '~/api';
 import SearchResult from './SearchResult';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import config from '~/config';
 import * as header from './Header.style';
 
@@ -40,6 +40,8 @@ const Header: React.FC = () => {
     const [showResult, setShowResult] = useState(false);
     const [, setLoading] = useState(false);
 
+    const navigate = useNavigate();
+
     useDebounce(
         () => {
             if (valueInput.trim()) {
@@ -55,6 +57,10 @@ const Header: React.FC = () => {
         [valueInput],
         800,
     );
+
+    const handleClickSearch = () => {
+        navigate(config.routes.searchResult + '?q=' + valueInput);
+    };
 
     return (
         <StyledWrapper>
@@ -137,7 +143,7 @@ const Header: React.FC = () => {
                         onFocus={() => setShowResult(true)}
                         onBlur={() => setShowResult(false)}
                     />
-                    <Button>
+                    <Button onClick={handleClickSearch}>
                         <img src={search} alt="" />
                     </Button>
                     {showResult && <SearchResult products={products} />}

@@ -79,6 +79,9 @@ export const StyledWrapper = styled.div`
         .product-icon {
             display: flex;
             margin-top: 20px;
+            .active {
+                background-color: #ccc;
+            }
             button {
                 margin-right: 10px;
             }

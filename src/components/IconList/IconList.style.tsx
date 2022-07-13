@@ -17,7 +17,4 @@ export const StyleButton = styled.button<IIcon>`
     &:hover {
         background-color: #eee;
     }
-    .active {
-        background-color: #eee;
-    }
 `;

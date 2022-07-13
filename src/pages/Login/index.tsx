@@ -66,6 +66,7 @@ const Login = () => {
 
                     const res = await authApi.login(body);
                     toast.success('Logged in successfully');
+                    window.localStorage.setItem('token', res.data.token);
                 } else {
                     const body = {
                         name: values.name,
@@ -74,8 +75,8 @@ const Login = () => {
                     };
 
                     const res = await authApi.register(body);
-                    console.log(res.data.name);
                     toast.success('Register successfully');
+                    window.localStorage.setItem('token', res.data.token);
                 }
 
                 navigate(config.routes.home);

@@ -1,7 +1,6 @@
 import * as footer from './Footer.style';
-import { insta, logo, twitter } from '~/assets';
+import { insta, logo, twitter, facebook } from '~/assets';
 import { Button, Input } from '~/components';
-import { facebook } from '~/assets';
 
 const Footer: React.FC = () => {
     const {
