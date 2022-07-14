@@ -13,6 +13,15 @@ import twitter from './twiter.svg';
 import search1 from './search+.svg';
 import cart1 from './cart1.svg';
 import heart1 from './heart1.svg';
+import search2 from './search2.svg';
+import cart2 from './cart2.svg';
+import heart2 from './heart2.svg';
+import freeDelivery from './free-delivery.svg';
+import cashback from './cashback.svg';
+import premium from './premium.svg';
+import hours from './hours.svg';
+import calendar from './calendar.svg';
+import vector from './vector.svg';
 
 export {
     facebook,
@@ -30,4 +39,13 @@ export {
     search1,
     cart1,
     heart1,
+    search2,
+    cart2,
+    heart2,
+    freeDelivery,
+    cashback,
+    premium,
+    hours,
+    calendar,
+    vector,
 };
