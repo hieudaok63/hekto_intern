@@ -7,3 +7,4 @@ export { default as Blog } from './Blog';
 export { default as AboutUs } from './AboutUs';
 export { default as Product } from './Product';
 export { default as Page } from './Page';
+export { default as ProductDetail } from './ProductDetail';

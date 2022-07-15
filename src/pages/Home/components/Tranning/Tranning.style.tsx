@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
         height: 24.4rem;
         img {
             padding: 3.3rem;
+            width: 100%;
         }
     }
     .tranning-heading {

@@ -1,15 +1,27 @@
-import React from 'react';
 import { Wrapper } from './Leatest.style';
-import { latest, sale, search2, cart2, heart2 } from '~/assets';
+import { search2, cart2, heart2 } from '~/assets';
 import { IconList } from '~/components';
+import { ILatest as ILatestList } from '../..';
 
-function LeatestProducts() {
+interface IData {
+    latest: ILatestList;
+}
+
+function LeatestProducts({ latest }: IData) {
+    const newPrice = latest.discount
+        ? latest.price - latest.price * (latest.discount / 100)
+        : latest.price;
+
+    const thumbnail = latest.images.find(
+        (image: { is_thumbnail: any }) => image.is_thumbnail,
+    );
+
     return (
         <Wrapper>
             <div className="leates-img">
-                <img src={latest} alt="" />
+                {/* <img src={latest1} alt="" /> */}
                 <div className="latest-sale">
-                    <img src={sale} alt="" />
+                    <img src={`${thumbnail?.image_url}`} alt="" />
                 </div>
                 <div className="latest-icon">
                     <IconList>
@@ -24,10 +36,10 @@ function LeatestProducts() {
                 </div>
             </div>
             <div className="leates-info">
-                <p>Comfort Handy Craft</p>
+                <p>{latest.name}</p>
                 <div className="leates-info-price">
-                    <span className="info-price-new">$42.00</span>
-                    <span className="info-price-old">$65.00</span>
+                    <span className="info-price-new">{newPrice}</span>
+                    <span className="info-price-old">{latest.price}</span>
                 </div>
             </div>
         </Wrapper>

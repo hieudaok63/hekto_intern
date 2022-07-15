@@ -9,6 +9,7 @@ import {
     Blog,
     AboutUs,
     Page,
+    ProductDetail,
 } from '~/pages';
 import { DefaultLayout } from '~/layouts';
 
@@ -26,6 +27,12 @@ const routes = [
     { path: config.routes.blog, layout: DefaultLayout, element: Blog },
     { path: config.routes.about, layout: DefaultLayout, element: AboutUs },
     { path: config.routes.page, layout: DefaultLayout, element: Page },
+    { path: config.routes.page, layout: DefaultLayout, element: Page },
+    {
+        path: config.routes.productdetail,
+        layout: DefaultLayout,
+        element: ProductDetail,
+    },
 ];
 
 export default routes;

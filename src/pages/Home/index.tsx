@@ -1,21 +1,75 @@
+import { useEffect, useState } from 'react';
 import Banner from './components/Banner';
-import FeaturedProducts from './components/FeaturedProducts';
+import { bannerimg } from '~/assets';
 import { StyledBannerSlide, Wrapper } from './Home.style';
 import LeatestProducts from './components/LeatestProducts';
 import Shopex from './components/Shopex';
-import { bannerimg } from '~/assets';
-//
+
+import BannerBottom from './components/BannerBottom';
+import { BrandList, Button } from '~/components';
+import Tranning from './components/Tranning';
+import LatestBlog from './components/Blog';
+import { productApi, blogApi } from '~/api';
+import FeaturedProducts from './components/FeaturedProducts';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper';
-import BannerBottom from './components/BannerBottom';
-import { BrandList, Button } from '~/components';
-import Tranning from './components/Tranning';
-import LatestBlog from './components/Blog';
+
+interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+    code: string;
+    discount: number;
+}
+
+export interface ILatest {
+    images: any;
+    id: number;
+    name: string;
+    price: number;
+    discount: number;
+}
+
+export interface ITrending {
+    images: any;
+    id: number;
+    name: string;
+    price: number;
+    discount: number;
+}
+
+export interface IBlog {
+    image_url: any;
+    id: number;
+    title: string;
+    price: number;
+    discount: number;
+    author: string;
+    description: string;
+    updated_at: string;
+}
 
 const Home = () => {
+    const [featureProduct, setFeatureProducts] = useState([]);
+    const [latestProducts, setLatestProducts] = useState([]);
+    const [trending, setTrending] = useState([]);
+    const [blog, setBlog] = useState([]);
+
+    useEffect(() => {
+        productApi
+            .getFeatured()
+            .then((res) => setFeatureProducts(res.data.data));
+
+        productApi.getLatest().then((res) => setLatestProducts(res.data.data));
+
+        productApi.getTrending().then((res) => setTrending(res.data.data));
+        blogApi.getList().then((res) => setBlog(res.data.data));
+    }, []);
+
     return (
         <Wrapper>
             <StyledBannerSlide>
@@ -52,19 +106,23 @@ const Home = () => {
             </StyledBannerSlide>
             <h2>Featured Products</h2>
             <div className="Featured">
-                <FeaturedProducts />
-                <FeaturedProducts />
-                <FeaturedProducts />
-                <FeaturedProducts />
+                {featureProduct.map((product: IProduct) => {
+                    return (
+                        <div key={product.id}>
+                            <FeaturedProducts data={product} />
+                        </div>
+                    );
+                })}
             </div>
             <h2>Leatest Products</h2>
             <div className="Leatest">
-                <LeatestProducts />
-                <LeatestProducts />
-                <LeatestProducts />
-                <LeatestProducts />
-                <LeatestProducts />
-                <LeatestProducts />
+                {latestProducts.map((latest: ILatest) => {
+                    return (
+                        <div key={latest.id}>
+                            <LeatestProducts latest={latest} />
+                        </div>
+                    );
+                })}
             </div>
             <h2>What Shopex Offer!</h2>
             <div className="Shopex">
@@ -83,10 +141,13 @@ const Home = () => {
             </div>
             <h2>Trending Products</h2>
             <div className="Trending">
-                <Tranning />
-                <Tranning />
-                <Tranning />
-                <Tranning />
+                {trending.map((dataTrending: ITrending) => {
+                    return (
+                        <div key={dataTrending.id}>
+                            <Tranning trending={dataTrending} />
+                        </div>
+                    );
+                })}
             </div>
             <div className="banner-img">
                 <img src={bannerimg} alt="" />
@@ -98,9 +159,13 @@ const Home = () => {
             <h2>Leatest Blog</h2>
 
             <div className="leatest-blog">
-                <LatestBlog />
-                <LatestBlog />
-                <LatestBlog />
+                {blog.map((item: IBlog) => {
+                    return (
+                        <div key={item.id}>
+                            <LatestBlog dataBlog={item} />
+                        </div>
+                    );
+                })}
             </div>
         </Wrapper>
     );

@@ -9,6 +9,7 @@ const config = {
         shop: '/shop',
         about: '/about-us',
         page: '/page',
+        productdetail: '/product-detail',
     },
 };
 

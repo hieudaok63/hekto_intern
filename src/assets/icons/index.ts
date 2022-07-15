@@ -22,6 +22,7 @@ import premium from './premium.svg';
 import hours from './hours.svg';
 import calendar from './calendar.svg';
 import vector from './vector.svg';
+import star from './star.svg';
 
 export {
     facebook,
@@ -48,4 +49,5 @@ export {
     hours,
     calendar,
     vector,
+    star,
 };

@@ -17,13 +17,24 @@ const productApi = {
 
     follow(id: number) {
         const url = `/products/${id}/follow`;
-
         return axiosClient.post(url);
     },
     unFollow(id: number) {
         const url = `/products/${id}/un-follow`;
-
         return axiosClient.post(url);
+    },
+
+    getFeatured() {
+        const url = '/products/featured';
+        return axiosClient.get(url);
+    },
+    getLatest() {
+        const url = '/products/latest';
+        return axiosClient.get(url);
+    },
+    getTrending() {
+        const url = '/products/trending';
+        return axiosClient.get(url);
     },
 };
 

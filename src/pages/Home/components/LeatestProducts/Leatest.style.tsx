@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
 
     .leates-img {
         background-color: #f7f7f7;
-        padding: 3.3rem 6.4rem 0.8rem 7.3rem;
         width: 100%;
         height: 27rem;
         position: relative;
@@ -15,7 +14,13 @@ export const Wrapper = styled.div`
             position: absolute;
             top: 0;
             left: 0;
-            display: none;
+            padding: 2rem 5rem;
+            /* display: none; */
+
+            img {
+                width: 22.3rem;
+                height: 23rem;
+            }
         }
 
         .latest-icon {

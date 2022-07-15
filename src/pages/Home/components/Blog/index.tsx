@@ -1,32 +1,38 @@
 import { StyledWrapper } from './Blog.style';
-import { latestblog, calendar, vector } from '~/assets';
+import { calendar, vector } from '~/assets';
+import { IBlog as IDataBlog } from '../..';
+import moment from 'moment';
 
-function LatestBlog() {
+interface IDataBlogList {
+    dataBlog: IDataBlog;
+}
+
+function LatestBlog({ dataBlog }: IDataBlogList) {
+    console.log(dataBlog);
     return (
         <StyledWrapper>
-            <img src={latestblog} alt="" className="latest-blog-img" />
+            <img src={dataBlog.image_url} alt="" className="latest-blog-img" />
             <div className="latest-blog-body">
                 <div className="latest-blog-top">
                     <div className="blog-top-left">
                         <span className="blog-top-left-icon">
                             <img src={calendar} alt="" />
                         </span>
-                        <span>SaberAli</span>
+                        <span>
+                            {moment(dataBlog.updated_at).format(
+                                ' DD MMMM YYYY',
+                            )}
+                        </span>
                     </div>
                     <div className="blog-top-right">
                         <span className="blog-top-right-icon">
                             <img src={vector} alt="" />
                         </span>
-                        <span>21 August,2020</span>
+                        <span>{dataBlog.author}</span>
                     </div>
                 </div>
-                <p className="latest-blog-heading">
-                    Top esssential Trends in 2021
-                </p>
-                <p className="latest-blog-desc">
-                    More off this less hello samlande lied much over tightly
-                    circa horse taped mightly
-                </p>
+                <p className="latest-blog-heading">{dataBlog.title}</p>
+                <p className="latest-blog-desc">{dataBlog.description}</p>
                 <span className="latest-blog-more">Read More</span>
             </div>
         </StyledWrapper>
