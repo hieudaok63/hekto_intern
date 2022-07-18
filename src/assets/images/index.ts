@@ -5,7 +5,7 @@ import banner from './banner.png';
 import latest from './latest.png';
 import sale from './sale.png';
 import bannerbottom from './bannerbottom.png';
-import bannerimg from './bannerimg.png';
+import bannerImg from './bannerimg.png';
 import latestblog from './latestblog.png';
 import test from './test.png';
 
@@ -14,7 +14,7 @@ export {
     img,
     light,
     banner,
-    bannerimg,
+    bannerImg,
     latest,
     sale,
     bannerbottom,

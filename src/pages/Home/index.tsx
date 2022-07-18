@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Banner from './components/Banner';
-import { bannerimg } from '~/assets';
+import { bannerImg } from '~/assets';
 import { StyledBannerSlide, Wrapper } from './Home.style';
 import LeatestProducts from './components/LeatestProducts';
 import Shopex from './components/Shopex';
@@ -63,29 +63,45 @@ export interface IBlog {
 }
 
 const Home = () => {
-    const [featureProduct, setFeatureProducts] = useState([]);
+    const [featureProducts, setFeatureProducts] = useState([]);
     const [latestProducts, setLatestProducts] = useState([]);
-    const [trending, setTrending] = useState([]);
+    const [trendings, setTrendings] = useState([]);
     const [blog, setBlog] = useState([]);
 
     const getFeatured = async () => {
-        const res = await productApi.getFeatured();
-        return setFeatureProducts(res.data.data);
+        try {
+            const res = await productApi.getFeatured();
+            return setFeatureProducts(res.data.data);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     const getLatest = async () => {
-        const res = await productApi.getLatest();
-        return setLatestProducts(res.data.data);
+        try {
+            const res = await productApi.getLatest();
+            return setLatestProducts(res.data.data);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     const getTrending = async () => {
-        const res = await productApi.getTrending();
-        return setTrending(res.data.data);
+        try {
+            const res = await productApi.getTrending();
+            return setTrendings(res.data.data);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     const getList = async () => {
-        const res = await blogApi.getList();
-        return setBlog(res.data.data);
+        try {
+            const res = await blogApi.getList();
+            return setBlog(res.data.data);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     useEffect(() => {
@@ -131,7 +147,7 @@ const Home = () => {
             </StyledBannerSlide>
             <h2>Featured Products</h2>
             <div className="Featured">
-                {featureProduct.map((product: IProduct) => {
+                {featureProducts.map((product: IProduct) => {
                     return (
                         <div key={product.id}>
                             <Link
@@ -178,16 +194,22 @@ const Home = () => {
             </div>
             <h2>Trending Products</h2>
             <div className="Trending">
-                {trending.map((dataTrending: ITrending) => {
+                {trendings.map((trending: ITrending) => {
                     return (
-                        <div key={dataTrending.id}>
-                            <Tranning trending={dataTrending} />
+                        <div key={trending.id}>
+                            <Link
+                                to={generatePath(config.routes.productdetail, {
+                                    id: String(trending.id),
+                                })}
+                            >
+                                <Tranning trending={trending} />
+                            </Link>
                         </div>
                     );
                 })}
             </div>
             <div className="banner-img">
-                <img src={bannerimg} alt="" />
+                <img src={bannerImg} alt="" />
             </div>
             <div className="brand-list">
                 <BrandList />
@@ -196,10 +218,10 @@ const Home = () => {
             <h2>Leatest Blog</h2>
 
             <div className="leatest-blog">
-                {blog.map((item: IBlog) => {
+                {blog.map((BlogItem: IBlog) => {
                     return (
-                        <div key={item.id}>
-                            <LatestBlog dataBlog={item} />
+                        <div key={BlogItem.id}>
+                            <LatestBlog dataBlog={BlogItem} />
                         </div>
                     );
                 })}

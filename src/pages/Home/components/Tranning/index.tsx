@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Wrapper } from './Tranning.style';
 import { ITrending } from '../..';
 
@@ -6,9 +7,13 @@ interface IPropsDataTrending {
 }
 
 function Tranning({ trending }: IPropsDataTrending) {
-    const newPrice = trending.discount
-        ? trending.price - trending.price * (trending.discount / 100)
-        : trending.price;
+    const newPrice = useMemo(() => {
+        const result = trending?.discount
+            ? trending.price - trending.price * (trending.discount / 100)
+            : trending?.price;
+
+        return result;
+    }, [trending.price, trending.discount]);
 
     const thumbnail = trending?.images.find((image) => image.is_thumbnail);
 

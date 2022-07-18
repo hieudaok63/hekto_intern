@@ -1,18 +1,26 @@
-import React from 'react';
+import { useMemo } from 'react';
 import { StyledWrapper } from './ProductInfo.style';
-import { test, star, heart1, facebook, insta, twitter } from '~/assets';
+import { star, heart1, facebook, insta, twitter } from '~/assets';
 import { Button } from '~/components';
 import { IProductInfo as IdProductInfoProps } from '../..';
 
 interface IProductInfoData {
     data?: IdProductInfoProps;
 }
+interface IImage {
+    id: number;
+    is_thumbnail: boolean;
+    image_url: string;
+}
 
 function ProductInfo({ data }: IProductInfoData) {
-    const newPrice = data?.discount
-        ? data.price - data.price * (data.discount / 100)
-        : data?.price;
+    const newPrice = useMemo(() => {
+        const result = data?.discount
+            ? data.price - data.price * (data.discount / 100)
+            : data?.price;
 
+        return result;
+    }, [data?.price, data?.discount]);
     const images = data?.images.filter((image) => !image.is_thumbnail);
     const thumbnail = data?.images.find((image) => image.is_thumbnail);
 
@@ -20,7 +28,7 @@ function ProductInfo({ data }: IProductInfoData) {
         <StyledWrapper>
             <div className="product-info-img">
                 <div className="info-img-left">
-                    {images?.map((image) => (
+                    {images?.map((image: IImage) => (
                         <img src={image.image_url} alt="" key={image.id} />
                     ))}
                 </div>

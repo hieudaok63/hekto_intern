@@ -67,9 +67,7 @@ const breadcrumb = [
 ];
 const ProductDetail = () => {
     const [tab, setTab] = useState<string>(DESCRIPTION);
-    const [productInfo, setProductInfo] = useState<IProductInfo | undefined>(
-        undefined,
-    );
+    const [productInfo, setProductInfo] = useState<IProductInfo>();
 
     const [related, setRelated] = useState([]);
 
@@ -108,6 +106,7 @@ const ProductDetail = () => {
                     </div>
                 );
             default:
+                return null;
         }
     };
     return (

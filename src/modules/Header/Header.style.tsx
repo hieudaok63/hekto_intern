@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// Header top
 export const StyledWrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
@@ -82,7 +81,6 @@ export const HeaderTopRightList = styled.div`
     }
 `;
 
-// Header bottom
 export const StyledHeaderBottom = styled.div`
     height: 78px;
     max-width: 1164px;
