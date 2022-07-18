@@ -8,7 +8,6 @@ interface IDataBlogList {
 }
 
 function LatestBlog({ dataBlog }: IDataBlogList) {
-    console.log(dataBlog);
     return (
         <StyledWrapper>
             <img src={dataBlog.image_url} alt="" className="latest-blog-img" />

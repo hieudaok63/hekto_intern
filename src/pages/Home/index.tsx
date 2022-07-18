@@ -5,6 +5,9 @@ import { StyledBannerSlide, Wrapper } from './Home.style';
 import LeatestProducts from './components/LeatestProducts';
 import Shopex from './components/Shopex';
 
+import { generatePath, Link } from 'react-router-dom';
+import config from '~/config';
+
 import BannerBottom from './components/BannerBottom';
 import { BrandList, Button } from '~/components';
 import Tranning from './components/Tranning';
@@ -27,7 +30,10 @@ interface IProduct {
 }
 
 export interface ILatest {
-    images: any;
+    images?: {
+        image_url?: string;
+        is_thumbnail?: boolean;
+    }[];
     id: number;
     name: string;
     price: number;
@@ -35,7 +41,10 @@ export interface ILatest {
 }
 
 export interface ITrending {
-    images: any;
+    images: {
+        image_url: string;
+        is_thumbnail: boolean;
+    }[];
     id: number;
     name: string;
     price: number;
@@ -43,7 +52,7 @@ export interface ITrending {
 }
 
 export interface IBlog {
-    image_url: any;
+    image_url?: string;
     id: number;
     title: string;
     price: number;
@@ -59,15 +68,31 @@ const Home = () => {
     const [trending, setTrending] = useState([]);
     const [blog, setBlog] = useState([]);
 
+    const getFeatured = async () => {
+        const res = await productApi.getFeatured();
+        return setFeatureProducts(res.data.data);
+    };
+
+    const getLatest = async () => {
+        const res = await productApi.getLatest();
+        return setLatestProducts(res.data.data);
+    };
+
+    const getTrending = async () => {
+        const res = await productApi.getTrending();
+        return setTrending(res.data.data);
+    };
+
+    const getList = async () => {
+        const res = await blogApi.getList();
+        return setBlog(res.data.data);
+    };
+
     useEffect(() => {
-        productApi
-            .getFeatured()
-            .then((res) => setFeatureProducts(res.data.data));
-
-        productApi.getLatest().then((res) => setLatestProducts(res.data.data));
-
-        productApi.getTrending().then((res) => setTrending(res.data.data));
-        blogApi.getList().then((res) => setBlog(res.data.data));
+        getFeatured();
+        getLatest();
+        getTrending();
+        getList();
     }, []);
 
     return (
@@ -109,7 +134,13 @@ const Home = () => {
                 {featureProduct.map((product: IProduct) => {
                     return (
                         <div key={product.id}>
-                            <FeaturedProducts data={product} />
+                            <Link
+                                to={generatePath(config.routes.productdetail, {
+                                    id: String(product.id),
+                                })}
+                            >
+                                <FeaturedProducts data={product} />
+                            </Link>
                         </div>
                     );
                 })}
@@ -119,7 +150,13 @@ const Home = () => {
                 {latestProducts.map((latest: ILatest) => {
                     return (
                         <div key={latest.id}>
-                            <LeatestProducts latest={latest} />
+                            <Link
+                                to={generatePath(config.routes.productdetail, {
+                                    id: String(latest.id),
+                                })}
+                            >
+                                <LeatestProducts latest={latest} />
+                            </Link>
                         </div>
                     );
                 })}

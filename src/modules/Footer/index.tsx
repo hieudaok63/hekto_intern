@@ -17,7 +17,6 @@ const Footer: React.FC = () => {
 
     return (
         <Wrapper>
-            {/* footer top */}
             <WrapperFooterTop>
                 <FooterTopBody>
                     <FooterTopList>
@@ -89,7 +88,6 @@ const Footer: React.FC = () => {
                 </FooterTopBody>
             </WrapperFooterTop>
 
-            {/* footer bottom */}
             <WrapperFooterBottom>
                 <WrapperFooterBody>
                     <p>©Webecy - All Rights Reserved</p>

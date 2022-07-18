@@ -15,6 +15,11 @@ const productApi = {
         return axiosClient.get(url);
     },
 
+    show(id: number) {
+        const url = `/products/${id}`;
+        return axiosClient.get(url);
+    },
+
     follow(id: number) {
         const url = `/products/${id}/follow`;
         return axiosClient.post(url);

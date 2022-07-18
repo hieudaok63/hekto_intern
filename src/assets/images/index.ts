@@ -2,7 +2,7 @@ import brandList from './brandList.png';
 import img from './img.png';
 import light from './light.png';
 import banner from './banner.png';
-import latest1 from './latest.png';
+import latest from './latest.png';
 import sale from './sale.png';
 import bannerbottom from './bannerbottom.png';
 import bannerimg from './bannerimg.png';
@@ -15,7 +15,7 @@ export {
     light,
     banner,
     bannerimg,
-    latest1,
+    latest,
     sale,
     bannerbottom,
     latestblog,

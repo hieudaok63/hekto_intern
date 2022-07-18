@@ -15,7 +15,6 @@ export const Wrapper = styled.div`
             top: 0;
             left: 0;
             padding: 2rem 5rem;
-            /* display: none; */
 
             img {
                 width: 22.3rem;

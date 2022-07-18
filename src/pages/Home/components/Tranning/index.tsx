@@ -1,6 +1,4 @@
-import React from 'react';
 import { Wrapper } from './Tranning.style';
-import { img } from '~/assets';
 import { ITrending } from '../..';
 
 interface IPropsDataTrending {
@@ -12,9 +10,7 @@ function Tranning({ trending }: IPropsDataTrending) {
         ? trending.price - trending.price * (trending.discount / 100)
         : trending.price;
 
-    const thumbnail = trending.images.find(
-        (image: { is_thumbnail: any }) => image.is_thumbnail,
-    );
+    const thumbnail = trending?.images.find((image) => image.is_thumbnail);
 
     return (
         <Wrapper>

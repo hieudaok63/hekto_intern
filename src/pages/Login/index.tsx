@@ -124,7 +124,6 @@ const Login = () => {
     return (
         <div>
             <HeadingPage breadcrumb={breadcrumb} title="My Account">
-                {/* {isSubmitting && <Loading/>} */}
                 <FormBody>
                     <StyledForm>
                         <h3>{changeLogin ? 'Login' : 'Register'}</h3>

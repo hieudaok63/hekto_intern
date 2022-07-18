@@ -1,19 +1,25 @@
 import { RelatedWrapper } from './ProductRelated.style';
-import { test, star } from '~/assets';
+import { star } from '~/assets';
+import { IRelated as IRelatedProps } from '../..';
 
-function ProductRelated() {
+interface IRelatedPropsData {
+    relatedData: IRelatedProps;
+}
+
+function ProductRelated({ relatedData }: IRelatedPropsData) {
+    const images = relatedData.images.find((image) => image.is_thumbnail);
     return (
         <RelatedWrapper>
             <div className="related-img">
-                <img src={test} alt="" />
+                <img src={images?.image_url} alt="" />
             </div>
             <div className="related-name">
-                <span className="related-heading-text">Mens Fashion Wear</span>
+                <span className="related-heading-text">{relatedData.name}</span>
                 <span>
                     <img src={star} alt="" />
                 </span>
             </div>
-            <p className="related-price">$43.00</p>
+            <p className="related-price">${relatedData.price}</p>
         </RelatedWrapper>
     );
 }

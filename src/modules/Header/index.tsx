@@ -99,7 +99,6 @@ const Header: React.FC = () => {
                                     <span>Login</span>
                                     <img src={user} alt="" />
                                 </Link>
-                                {/* <span className="modal-header">Log out</span> */}
                             </div>
                         </HeaderTopRightList>
 

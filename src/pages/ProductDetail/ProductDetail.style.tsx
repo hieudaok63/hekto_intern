@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     }
 
     .product-tab {
-        height: 65rem;
+        height: auto;
         background-color: #f9f8fe;
         .product-tab-content {
             max-width: 1164px;
@@ -67,5 +67,12 @@ export const Wrapper = styled.div`
                 margin-top: 4rem;
             }
         }
+    }
+
+    .video {
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `;

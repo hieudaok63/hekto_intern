@@ -12,14 +12,11 @@ function LeatestProducts({ latest }: IData) {
         ? latest.price - latest.price * (latest.discount / 100)
         : latest.price;
 
-    const thumbnail = latest.images.find(
-        (image: { is_thumbnail: any }) => image.is_thumbnail,
-    );
+    const thumbnail = latest.images?.find((image) => image.is_thumbnail);
 
     return (
         <Wrapper>
             <div className="leates-img">
-                {/* <img src={latest1} alt="" /> */}
                 <div className="latest-sale">
                     <img src={`${thumbnail?.image_url}`} alt="" />
                 </div>

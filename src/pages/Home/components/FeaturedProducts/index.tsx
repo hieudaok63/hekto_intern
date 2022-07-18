@@ -19,15 +19,16 @@ const FeaturedProducts = ({ data }: IPropsData) => {
         : data.price;
 
     const thumbnail = data.images.find(
-        (image: { is_thumbnail: any }) => image.is_thumbnail,
+        (image: { is_thumbnail: boolean }) => image.is_thumbnail,
     );
     return (
         <StyledFeaturedWrapper>
             <div className="feature-item">
                 <div className="feature-item-img">
                     <img src={`${thumbnail?.image_url}`} alt="" />
+
                     <Button position="absolute" height="2.9rem">
-                        View Details
+                        <span>View Details</span>
                     </Button>
                     <div className="feature-item-icon">
                         <IconList>
